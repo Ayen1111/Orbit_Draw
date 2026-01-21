@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbit - Premium Canvas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <!-- Background Elements -->
+    <div class="bg-gradient-1"></div>
+    <div class="bg-gradient-2"></div>
+
+    <!-- Canvas Fullscreen -->
+    <div id="canvas-container">
+        <canvas id="main-canvas"></canvas>
+        <canvas id="draft-canvas"></canvas>
+        <div id="cursors-layer"></div>
+        <div id="brush-cursor"></div>
+    </div>
+
+    <!-- Floating UI: Header -->
+    <div class="floating-header glass-panel">
+        <div class="logo-section">
+            <div class="logo-icon">
+                <span class="material-icons-round">public</span>
+            </div>
+            <span class="app-name">Orbit</span>
+        </div>
+
+        <div class="header-status">
+            <div id="connection-status" class="status-pill connected">
+                <span class="status-dot"></span>
+                <span class="status-text">Connected</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating UI: Users (Top Right) -->
+    <div class="floating-users glass-panel">
+        <div class="users-header" id="users-toggle">
+            <span class="material-icons-round">group</span>
+            <span id="user-count">Users</span>
+        </div>
+        <ul id="user-ul" class="user-list">
+            <!-- Populated by JS -->
+        </ul>
+    </div>
+
+    <!-- Floating UI: Metrics (Bottom Left) -->
+    <div class="floating-metrics glass-panel">
+        <div class="metric-item">
+            <span class="material-icons-round">speed</span>
+            <span id="fps-counter">FPS: 60</span>
+        </div>
+        <div class="divider-vertical"></div>
+        <div class="metric-item">
+            <span class="material-icons-round">network_check</span>
+            <span id="latency-counter">24ms</span>
+        </div>
+    </div>
+
+    <!-- Floating UI: Main Toolbar (Bottom Center) -->
+    <div class="floating-toolbar glass-panel">
+        <!-- Tools -->
+        <div class="tool-group">
+            <button id="tool-brush" class="tool-btn active" title="Brush (B)">
+                <span class="material-icons-round">brush</span>
+            </button>
+            <button id="tool-eraser" class="tool-btn" title="Eraser (E)">
+                <span class="material-icons-round">cleaning_services</span>
+            </button>
+        </div>
+
+        <div class="divider-vertical"></div>
+
+        <!-- Properties -->
+        <div class="tool-settings">
+            <div class="color-picker-wrapper">
+                <input type="color" id="color-picker" value="#3b82f6">
+                <div class="color-preview"></div>
+            </div>
+
+            <div class="swatches">
+                <div class="swatch" data-color="#000000" style="background: #000000"></div>
+                <div class="swatch" data-color="#ef4444" style="background: #ef4444"></div>
+                <div class="swatch" data-color="#22c55e" style="background: #22c55e"></div>
+                <div class="swatch" data-color="#3b82f6" style="background: #3b82f6"></div>
+            </div>
+
+            <div class="size-control">
+                <span class="material-icons-round small-icon">circle</span>
+                <input type="range" id="size-slider" min="2" max="40" value="5">
+                <span id="size-display" class="size-val">5</span>
+            </div>
+        </div>
+
+        <div class="divider-vertical"></div>
+
+        <!-- Actions -->
+        <div class="tool-actions">
+            <button id="btn-undo" class="tool-btn" title="Undo">
+                <span class="material-icons-round">undo</span>
+            </button>
+            <button id="btn-clear" class="tool-btn warning" title="Clear All">
+                <span class="material-icons-round">delete_outline</span>
+            </button>
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>
