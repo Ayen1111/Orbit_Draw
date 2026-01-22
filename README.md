@@ -47,7 +47,7 @@ Orbit is a high-performance, real-time collaborative whiteboard application buil
     ```
 
 4.  **Open in Browser**
-    Visit `http://localhost:3000`.
+    Visit `https://orbit-draw.onrender.com`.
     *   To collaborate, click "Share" and open the link in another tab or device.
 
 ## 🏗 Architecture
