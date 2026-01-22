@@ -3,7 +3,9 @@
 Orbit is a high-performance, real-time collaborative whiteboard application built with **Node.js**, **Socket.IO**, and **Vanilla HTML5 Canvas**. It features 0-latency live drawing, room-based isolation for private sessions, and a premium glassmorphism UI.
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
+
 ![Status](https://img.shields.io/badge/status-live-green.svg)
+[![Render](https://img.shields.io/badge/Render-Live-46E3B7?style=flat&logo=render&logoColor=white)](https://orbit-draw.onrender.com)
 
 ## 🚀 Features
 

@@ -3,8 +3,8 @@ export class CanvasManager {
         this.canvas = canvas;
         this.draftCanvas = draftCanvas;
 
-        this.ctx = canvas.getContext('2d', { alpha: false }); // Main canvas opaque for perf
-        this.draftCtx = draftCanvas.getContext('2d'); // Default alpha: true
+        this.ctx = canvas.getContext('2d', { alpha: false }); 
+        this.draftCtx = draftCanvas.getContext('2d'); 
 
         // Settings
         this.ctx.lineCap = 'round';
@@ -17,34 +17,29 @@ export class CanvasManager {
     }
 
     resize(width, height, dpr) {
-        // dimensions are already set on canvas.width/height by main.js
-        // We just need to scale the context
+        
 
         this.ctx.scale(dpr, dpr);
         this.draftCtx.scale(dpr, dpr);
 
-        // Reset context properties after resize (scaling resets them sometimes?)
-        // Actually scale persists? No, changing width/height resets context state.
+        
 
         this.ctx.lineCap = 'round';
         this.ctx.lineJoin = 'round';
         this.ctx.fillStyle = '#ffffff';
-        // Note: fillRect needs to use LOGICAL coordinates now because we scaled!
-        // But wait, if we set width=physical, and scale(dpr), then drawing 0,0,logical,logical covers it?
-        // Yes.
+        
         this.ctx.fillRect(0, 0, width, height);
 
         this.draftCtx.lineCap = 'round';
         this.draftCtx.lineJoin = 'round';
 
-        // Store logical dimensions if needed or just trust user passes valid coords
-        this.width = width;
+        
         this.height = height;
     }
 
     clear() {
         this.ctx.fillStyle = '#ffffff';
-        // Use the logical width/height stored during resize
+        
         this.ctx.fillRect(0, 0, this.width || this.canvas.width, this.height || this.canvas.height);
     }
 

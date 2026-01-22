@@ -22,9 +22,7 @@ export class StateManager {
 
     applyRemoteOperation(op) {
         this.history.push(op);
-        // Optimisation: Just draw this one instead of full redraw if it's additive
-        // But for consistency with Undo logic later, we need to be careful.
-        // For 'draw_stroke', it's additive.
+        
         if (op.active) {
             this.canvasManager.drawOperation(op);
         }
@@ -52,7 +50,6 @@ export class StateManager {
             timestamp: Date.now()
         };
         this.history.push(op);
-        // Draw immediately (Optimistic UI)
         if (op.type === 'clear') {
             this.canvasManager.clear();
         } else {
