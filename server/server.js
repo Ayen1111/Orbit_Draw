@@ -24,7 +24,7 @@ io.on('connection', (socket) => {
     setupWebSocket(socket, io, roomManager);
 });
 
-const PORT = 3000; // Force port 4000, ignore environment
+const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
